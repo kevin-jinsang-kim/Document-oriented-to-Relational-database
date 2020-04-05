@@ -20,5 +20,6 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     contentBase: './server/public'
-  }
+  },
+  devServer: { historyApiFallback: true, contentBase: './' }
 }

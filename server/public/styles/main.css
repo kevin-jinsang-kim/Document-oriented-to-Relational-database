@@ -1,0 +1,15 @@
+.main-div {
+    display: grid;
+    grid-template-columns: 1fr 0.3fr 1fr;
+}
+
+.json-left {
+    margin: none;
+    grid-column-start: 0;
+    grid-column-end: 1;
+}
+
+.sql-right {
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
