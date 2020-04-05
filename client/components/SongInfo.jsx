@@ -5,7 +5,9 @@ import { migrateData } from './actions/allSongs'
 const divStyle = {
     margin: 'none',
     border: 'solid',
-    width: '300px'
+    width: '200px',
+    height: 'auto',
+    lineHeight: '5px'
 }
 
 class SongInfo extends React.Component {

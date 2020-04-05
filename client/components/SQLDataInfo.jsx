@@ -1,8 +1,11 @@
 import React from 'react'
 
 const divStyle = {
+    margin: 'none',
     border: 'solid',
-    width: '300px'
+    width: '250px',
+    height: 'auto',
+    lineHeight: '0.5rem'
 }
 
 export default function SQLDataInfo(props) {

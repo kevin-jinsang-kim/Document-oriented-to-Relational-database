@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import SQLDataInfo from './SQLDataInfo'
 
 class SQLData extends React.Component {
+
     render() {
     return (
         <div>

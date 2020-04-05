@@ -5,11 +5,36 @@
 
 .json-left {
     margin: none;
+    height: 400px;
     grid-column-start: 0;
     grid-column-end: 1;
 }
 
 .sql-right {
-    grid-column-start: 2;
+    grid-column-start: 1;
     grid-column-end: 3;
+}
+
+.sql-outside {
+    display: grid;
+    border: black;
+    margin: none;
+    background-color: lightcoral;
+}
+
+.sql-outside2 {
+    border: black;
+    margin: none;
+    background-color: lightskyblue;
+}
+
+.sql-outside3 {
+    border: black;
+    margin: none;
+    background-color: olive;
+}
+
+.sql-divider {
+    border: dotted;
+    margin: none;
 }
