@@ -13,24 +13,7 @@ function getSongs (db = database) {
 }
 
 function migrateSong (song, db = database) {
-    if (song.artist == 'Pandemic') song.artistId = 1
-    if (song.artist == 'Panic Purchase') song.artistId = 2
-    if (song.album == '2020') song.albumId = 1
-    if (song.album == 'Straight Outta Stockton') song.albumId = 2
-    if (song.album == 'Makin Paper') song.albumId = 3
 
-    return db('titles')
-    .select('title')
-    .where('title', song.title)
-    .then((row) => {
-        if (row.length === 0) {
-            return db('titles')
-            .insert({ title: song.title, duration: song.duration, artistId: song.artistId, albumId: song.albumId })
-        } else {
-            console.log('Title already exists!')
-        }
-    })
-    .then(() => {
         return db('albums')
         .select('album')
         .where('album', song.album)
@@ -48,12 +31,24 @@ function migrateSong (song, db = database) {
             .where('artist', song.artist)
             .then((row) => {
                 if (row.length === 0) {
-                    return db('artist')
+                    return db('artists')
                     .insert({ artist: song.artist, debutYear: song.debutYear })
                 } else {
                     console.log('This artist already exists')
                 }
             })
+        })
+        .then(() => {
+        return db('titles')
+        .select('title')
+        .where('title', song.title)
+        .then((row) => {
+            if (row.length === 0) {
+                return db('titles')
+                .insert({ title: song.title, duration: song.duration, albumId: db('albums').where('album', song.album).select('id'), artistId: db('artists').where('artist', song.artist).select('id') })  
+            } else {
+                console.log('Title already exists!')
+            }
         })
     })
 }
