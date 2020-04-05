@@ -59,6 +59,7 @@
       "artist": "New Artist",
       "debutYear": "2012",
       "album": "New Album",
-      "year": "2015"
+      "year": "2015",
+      "extrainfo": "I hope this doesn't appear!"
     }
 ]
