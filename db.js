@@ -20,15 +20,40 @@ function migrateSong (song, db = database) {
     if (song.album == 'Makin Paper') song.albumId = 3
 
     return db('titles')
-    .insert({ title: song.title, duration: song.duration, artistId: song.artistId, albumId: song.albumId })
-    .then(album => {
-        console.log('this is album: ', album)
+    .select('title')
+    .where('title', song.title)
+    .then((row) => {
+        if (row.length === 0) {
+            return db('titles')
+            .insert({ title: song.title, duration: song.duration, artistId: song.artistId, albumId: song.albumId })
+        } else {
+            console.log('Title already exists!')
+        }
+    })
+    .then(() => {
         return db('albums')
-        .insert({ album: song.album, year: song.year,  })
-        .then(artist => {
-            console.log('this is artist: ', artist)
+        .select('album')
+        .where('album', song.album)
+        .then((row) => {
+            if (row.length === 0) {
+                return db('albums')
+                .insert({ album: song.album, year: song.year })
+            } else {
+                console.log('This album already exists')
+            }
+        })
+        .then(() => {
             return db('artists')
-            .insert({ artist: song.artist, debutYear: song.debutYear })
+            .select('artist')
+            .where('artist', song.artist)
+            .then((row) => {
+                if (row.length === 0) {
+                    return db('artist')
+                    .insert({ artist: song.artist, debutYear: song.debutYear })
+                } else {
+                    console.log('This artist already exists')
+                }
+            })
         })
     })
 }
