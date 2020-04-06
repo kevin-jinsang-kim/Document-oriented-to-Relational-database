@@ -14,7 +14,11 @@
     "start": "run-s build server",
     "build": "webpack",
     "server": "node server",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "db:rollback": "knex migrate:rollback",
+    "db:migrate": "knex migrate:latest",
+    "db:seed": "knex seed:run",
+    "db:reset": "run-s db:rollback db:migrate db:seed"
   },
   "babel": {
     "presets": [
